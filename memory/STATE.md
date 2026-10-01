@@ -1,13 +1,13 @@
 # Estado
 
 - Tela padrão: estante (busca + populares); print em `docs/images/estante.jpg`
-- Repo: [silvalnk/lua-orihon-manga-reader](https://github.com/silvalnk/lua-orihon-manga-reader) · pasta `lua-orihon/`
-- Cabeçalho: só o nome **Orihon** + busca + EN/PT
-- Estante: barra de rolagem; sem botões no rodapé (Home/More/Top/Clear saíram)
+- Repo: [silvalnk/orihon-manga-reader-system-ui](https://github.com/silvalnk/orihon-manga-reader-system-ui) · pasta `orihon_manga_ui/`
+- Janela: Wails. Go e a interface em Clean Architecture. Páginas Vue + Tailwind. Inertia roteia `Shelf`, `Work`, `Reader`
+- Pinia: idioma (`en`) e visita em andamento
+- Cabeçalho: nome **Orihon** + busca + carimbo EN fixo
+- Estante: barra de rolagem; sem botões no rodapé
 - Ficha: **Back** · Leitura: **Back / Prev / Next / Single**
 - Clique no logo volta à estante (limpa a busca)
-- API: `https://api.mangadex.org` (curl `-g --compressed`)
-- UI: 3 workers; prefetch 5/3; 3 imagens/quadro (CAP-7 + `tests/perf.lua` + CI)
-- Idiomas: en, pt-br
-- Spread: duas páginas (RTL); `D` = página única
-- Testes: `lua tests/run.lua` verde; `lua tests/live.lua` para smoke
+- API: `https://api.mangadex.org`, User-Agent `Orihon/0.1`, só no adaptador Go
+- Spread: duas páginas (RTL); `D` = página única. A mesma conta está em `internal/domain/reading.go` e `frontend/src/domain/reading.ts`
+- Testes: `npm test` e `go test . ./internal/...` na raiz do repositório
