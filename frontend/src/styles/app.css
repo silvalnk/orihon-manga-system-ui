@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-washi: #f4efe4;
+  --color-paper: #fbf7ef;
+  --color-fold: #e7e0d4;
+  --color-line: #d9d0c1;
+  --color-ink: #1c1915;
+  --color-vermilion: #c23b22;
+  --font-serif: 'Iowan Old Style', Palatino, 'Palatino Linotype', 'Times New Roman', serif;
+}
+
+@layer base {
+  html,
+  body,
+  #app {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: var(--color-washi);
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+  }
+
+  button,
+  input {
+    font: inherit;
+    color: inherit;
+  }
+
+  html.orihon-pointer,
+  html.orihon-pointer * {
+    cursor: none !important;
+  }
+
+  .shelf-scroll::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .shelf-scroll::-webkit-scrollbar-track {
+    background: var(--color-fold);
+  }
+
+  .shelf-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-vermilion);
+  }
+}
