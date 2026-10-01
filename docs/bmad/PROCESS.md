@@ -6,7 +6,7 @@ Usamos o [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD) para o cont
 
 1. **Clarify** — o que o usuário quer mudar? (ex.: “estante de dobras, não grade de cards”)
 2. **Plan** — spec em `.specify/`, ADR se for decisão
-3. **Build** — código Lua + testes + glossário no mesmo turno
+3. **Build** — código nas camadas Go e nas camadas de `frontend/src`, com `go test` e `npm test`
 4. **Learn** — `memory/LAST_SESSION.md`; volta ao plan se a evidência mudar
 
 ## Onde vive o contexto
