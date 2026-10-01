@@ -4,3 +4,7 @@
 .data/
 *.log
 luac.out
+node_modules/
+frontend/dist/
+build/bin/
+.shots/
