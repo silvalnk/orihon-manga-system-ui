@@ -5,11 +5,19 @@ on:
   pull_request:
 
 jobs:
-  cap7:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Lua
-        run: sudo apt-get update && sudo apt-get install -y lua5.4
-      - name: CAP-7 and unit tests
-        run: lua5.4 tests/run.lua
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Frontend
+        run: npm ci && npm run build
+      - name: Go
+        run: go test . ./internal/...
