@@ -12,4 +12,4 @@ Orihon usa só a [MangaDex API v5](https://api.mangadex.org/docs/03-manga/search
 
 - Catálogo = obras publicadas na MangaDex.
 - Sem paywall, sem extração de secret de celular.
-- Stack: Lua/LÖVE e metáfora de orihon.
+- A metáfora de orihon permanece. A janela é Wails ([ADR 0004](0004-wails-inertia.md)); a interface em camadas está no [ADR 0005](0005-frontend-layers.md).
