@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w orihon",
+    "test": "npm test -w orihon",
+    "build": "npm run build -w orihon",
+    "lint": "npm run lint -w orihon"
+  }
+}
