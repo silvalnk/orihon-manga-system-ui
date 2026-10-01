@@ -5,7 +5,9 @@
 > UI de **orihon** (livro-acordeão): estante de dobras, ficha, leitura em *spread* RTL.  
 > Spec-Driven + [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD).
 
-![Estante do Orihon: busca, favoritos, grade de obras e barra de rolagem](docs/images/estante.jpg)
+Repositório: [silvalnk/orihon-manga-system-ui](https://github.com/silvalnk/orihon-manga-system-ui)
+
+![Estante do Orihon: busca, favoritos, capas e carimbo EN](docs/images/estante.jpg)
 
 | | |
 |--|--|
@@ -13,7 +15,7 @@
 | Linguagem | Go, TypeScript |
 | UI | Vue 3, Inertia, Tailwind, washi, vermelhão, dobras |
 | Arquitetura | Clean Architecture no Go e na interface; MVVM na apresentação |
-| Estado global | Pinia — idioma e visita em andamento |
+| Estado global | Pinia — visita em andamento. O catálogo fica em inglês |
 | API | MangaDex v5 + MangaDex@Home |
 | Persistência | `library.json` / `progress.json` |
 | Fora de escopo | Manga Plus, paywall, Tauri, conteúdo adulto explícito |
@@ -29,16 +31,16 @@
 | [`docs/GLOSSARY.md`](docs/GLOSSARY.md) | Termos para iniciante |
 | [`docs/bmad/PROCESS.md`](docs/bmad/PROCESS.md) | Loop Clarify → Plan → Build → Learn |
 | [`docs/adr/`](docs/adr/) | Porquês |
-| [`docs/images/estante.jpg`](docs/images/estante.jpg) | Print da estante |
+| [`docs/images/estante.jpg`](docs/images/estante.jpg) | Print da estante atual |
 | [`LICENSE`](LICENSE) | MIT (código) |
 
 Se código e spec divergirem, a **spec manda**.
 
 ## Pré-requisitos
 
-- Go (versão em `go.mod`)
-- Node.js
-- [Wails v2](https://wails.io/docs/gettingstarted/installation)
+- Go 1.25 (versão em `go.mod`)
+- Node.js 24.21 (`.tool-versions`)
+- [Wails v2](https://wails.io/docs/gettingstarted/installation) (`webkit2_41` no Ubuntu 24.04)
 
 ## Como rodar
 
@@ -54,7 +56,7 @@ wails dev
 
 Na estante: digite um título e **Enter**. A grade carrega mais obras ao **rolar** (barra à direita). Clique numa dobra para a ficha. A estrela vermelha guarda na estante. Clique num capítulo para o spread. O logo **Orihon** volta à estante.
 
-Não há botões no rodapé da home. Rodapé só onde falta navegação: **Back** na ficha; **Back / Prev / Next / Single** na leitura.
+Não há botões no rodapé da home. Rodapé só onde falta navegação: **Back** na ficha; **Back / Prev / Next / Single|Double** e a página atual na leitura. O carimbo **EN** fica aceso e não troca.
 
 | Tecla | Ação |
 |-------|------|

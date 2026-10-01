@@ -21,7 +21,7 @@ Briefing **independente de sessão** para o Cursor. O histórico do chat é opci
 
 ## Produto
 
-**Orihon** é um leitor desktop de mangá. A janela é Wails; o processo é Go e a interface Vue seguem Clean Architecture. A apresentação é MVVM (páginas, viewmodels, componentes) com Tailwind. O Inertia entrega as props. Pinia guarda o idioma e a visita em andamento. A UI imita um orihon (livro-acordeão): estante de dobras, ficha da obra, leitura em *spread* RTL. Pasta local: `orihon_manga_ui/`. Repositório: [silvalnk/orihon-manga-reader-system-ui](https://github.com/silvalnk/orihon-manga-reader-system-ui). Print da estante: [`docs/images/estante.jpg`](docs/images/estante.jpg).
+**Orihon** é um leitor desktop de mangá. A janela é Wails; o processo é Go e a interface Vue seguem Clean Architecture. A apresentação é MVVM (páginas, viewmodels, componentes) com Tailwind. O Inertia entrega as props. Pinia guarda o idioma e a visita em andamento. A UI imita um orihon (livro-acordeão): estante de dobras, ficha da obra, leitura em *spread* RTL. Pasta local: `orihon_manga_ui/`. Repositório: [silvalnk/orihon-manga-system-ui](https://github.com/silvalnk/orihon-manga-system-ui). Print da estante: [`docs/images/estante.jpg`](docs/images/estante.jpg).
 
 Chrome: cabeçalho (logo, busca, carimbo EN fixo); barra de rolagem na estante/ficha; rodapé só na ficha e na leitura. O catálogo pede só `en`.
 

@@ -2,7 +2,7 @@
 
 Atualizado: 2026-09-30
 
-GitHub: [silvalnk/orihon-manga-reader-system-ui](https://github.com/silvalnk/orihon-manga-reader-system-ui) · pasta local: `orihon_manga_ui/`
+GitHub: [silvalnk/orihon-manga-system-ui](https://github.com/silvalnk/orihon-manga-system-ui) · pasta local: `orihon_manga_ui/`
 
 Print da estante: [`docs/images/estante.jpg`](../docs/images/estante.jpg)
 
@@ -15,7 +15,7 @@ Print da estante: [`docs/images/estante.jpg`](../docs/images/estante.jpg)
 - Cabeçalho: selo + nome **Orihon**, busca, carimbo EN fixo
 - Estante: grade + barra de rolagem à direita; `limit`/`offset` ao chegar no fim; **sem rodapé**
 - Ficha: rodapé só **Back** (Esc também volta; o logo reseta a estante)
-- Leitura: rodapé **Back / Prev / Next / Single**. A página da direita é a atual
+- Leitura: rodapé **Back / Prev / Next / Single|Double** e a página atual. A página da direita é a atual
 - Idioma: sempre `en`. O carimbo EN não troca. Um `POST /lang` também grava `en`.
 - Conteúdo: safe + suggestive
 - Persistência: `library.json` + `progress.json` em `ORIHON_DATA_DIR` ou `~/.local/share/orihon/`

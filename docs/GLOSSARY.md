@@ -22,7 +22,7 @@
 
 **Erro comum:** Achar que é um leitor web ou o app oficial de uma editora.
 
-**Neste projeto:** o nome do produto; pasta local `orihon_manga_ui/`; repo [silvalnk/orihon-manga-reader-system-ui](https://github.com/silvalnk/orihon-manga-reader-system-ui).
+**Neste projeto:** o nome do produto; pasta local `orihon_manga_ui/`; repo [silvalnk/orihon-manga-system-ui](https://github.com/silvalnk/orihon-manga-system-ui).
 
 ### Estante (`shelf`)
 
