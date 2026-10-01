@@ -1,6 +1,6 @@
 # Orihon
 
-> Leitor desktop de mangá em **Lua + LÖVE**.  
+> Leitor desktop de mangá em **Go + Wails**, com interface **Vue, TypeScript e Inertia**.  
 > Catálogo pela [MangaDex API v5](https://api.mangadex.org/docs/03-manga/search/) (oficial, grátis).  
 > UI de **orihon** (livro-acordeão): estante de dobras, ficha, leitura em *spread* RTL.  
 > Spec-Driven + [BMad Method](https://github.com/bmad-code-org/BMAD-METHOD).
@@ -12,10 +12,13 @@ Pasta local: `orihon_manga_ui/` · Marca: **Orihon**
 
 | | |
 |--|--|
-| Linguagem | Lua 5.1+ (LÖVE 11) |
-| UI | LÖVE — washi, vermelhão, dobras |
+| Janela | [Wails](https://wails.io/) |
+| Linguagem | Go, TypeScript |
+| UI | Vue 3, Inertia, Tailwind, washi, vermelhão, dobras |
+| Arquitetura | Clean Architecture no Go e na interface; MVVM na apresentação |
+| Estado global | Pinia — idioma e visita em andamento |
 | API | MangaDex v5 + MangaDex@Home |
-| Persistência | `library.json` / `progress.json` no save dir |
+| Persistência | `library.json` / `progress.json` |
 | Fora de escopo | Manga Plus, paywall, Tauri, conteúdo adulto explícito |
 
 ## SDD (comece por aqui)
@@ -36,25 +39,23 @@ Se código e spec divergirem, a **spec manda**.
 
 ## Pré-requisitos
 
-- [LÖVE 11](https://love2d.org/) (`love`)
-- Lua 5.4 (só para testes)
-- `curl`
-
-```bash
-# Debian/Ubuntu / WSL
-sudo apt install love lua5.4 curl
-```
+- Go (versão em `go.mod`)
+- Node.js
+- [Wails v2](https://wails.io/docs/gettingstarted/installation)
 
 ## Como rodar
 
 ```bash
 cd orihon_manga_ui
-lua5.4 tests/run.lua    # ou: lua tests/run.lua  (inclui contratos de performance CAP-7)
-lua5.4 tests/live.lua   # smoke na API MangaDex (rede)
-love .
+npm install
+npm test
+go test . ./internal/...
+wails dev
 ```
 
-Na estante: digite um título e **Enter**. A grade carrega mais obras ao **rolar** (barra à direita). Clique numa dobra para a ficha. O selo vermelho guarda na estante. Clique num capítulo para o spread. O logo **Orihon** volta à estante.
+`wails dev` abre a janela em `http://127.0.0.1:18765` e serve o pacote de `frontend/dist`. No Ubuntu 24.04 o `wails.json` usa a tag `webkit2_41`, porque o sistema traz o WebKitGTK 4.1, e esse WebKit não completa o grafo de módulos do Vite. `wails build` gera o binário com os arquivos embutidos. O teste Go é `go test . ./internal/...` para não entrar em `frontend/node_modules`.
+
+Na estante: digite um título e **Enter**. A grade carrega mais obras ao **rolar** (barra à direita). Clique numa dobra para a ficha. A estrela vermelha guarda na estante. Clique num capítulo para o spread. O logo **Orihon** volta à estante.
 
 Não há botões no rodapé da home. Rodapé só onde falta navegação: **Back** na ficha; **Back / Prev / Next / Single** na leitura.
 
@@ -63,29 +64,32 @@ Não há botões no rodapé da home. Rodapé só onde falta navegação: **Back*
 | `/` | Foco na busca |
 | Enter | Buscar |
 | Esc | Voltar |
-| ← → | Páginas (RTL: a da **direita** é a atual) |
+| ← → | Páginas (RTL: a da **direita** é a atual; seta direita avança) |
 | D | Uma página só |
 | Clique direita / esquerda | Avançar / voltar |
-| EN / PT | Idioma do catálogo (`en` / `pt-br`) |
+| EN | Idioma fixo do catálogo (`en`) |
 
 ## Arquitetura
 
 ```
 orihon_manga_ui/
-  AGENTS.md
-  LICENSE
-  .specify/
-  memory/
-  docs/images/estante.jpg
-  src/json.lua http.lua mangadex.lua persist.lua
-  src/layout.lua jobs.lua download_thread.lua app.lua
-  tests/run.lua perf.lua live.lua
+  main.go                              janela Wails e servidor local
+  internal/domain                      obras, portas, estratégia do spread
+  internal/application                 casos de uso
+  internal/infrastructure              MangaDex e estante JSON
+  internal/composition                 liga as peças no Go
+  internal/presentation                rotas Inertia
+  frontend/src/domain                  estratégia do spread e dobras
+  frontend/src/application             casos de uso da tela
+  frontend/src/infrastructure          adaptador Inertia, Zod, sessão Pinia
+  frontend/src/composition             wire.ts
+  frontend/src/presentation            páginas, viewmodels, componentes
 ```
 
-HTTP usa `curl` **fora** da janela (3 workers em `src/jobs.lua`). Imagens vão para o save dir do LÖVE (`~/.local/share/love/orihon/` no Linux). `tests/perf.lua` falha se o `curl` voltar para `src/app.lua`.
+A interface não chama a MangaDex. O HTTP fica no adaptador Go. O Inertia é o roteador das páginas `Shelf`, `Work` e `Reader`. Favoritos e progresso ficam em `ORIHON_DATA_DIR` ou `~/.local/share/orihon/`. O visual é Tailwind (washi `#f4efe4`, vermelhão `#c23b22`).
 
 ## Licença
 
 MIT para o **código** do Orihon. Ver [`LICENSE`](LICENSE).
 
-As obras pertencem aos autores/editoras listados na MangaDex. O Orihon só consome a API pública. Não redistribua páginas em cache.
+As obras pertencem aos autores/editoras listados na MangaDex. O Orihon só consome a API pública. Não redistribua páginas.
