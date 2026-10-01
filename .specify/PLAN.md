@@ -1,13 +1,12 @@
-# Plano de construção
+# Plano
 
-Ver ADRs em `docs/adr/` e o processo em `docs/bmad/PROCESS.md`.
+1. Domínio Go: obra, capítulo, portas, estratégia do spread RTL
+2. Adaptador MangaDex (URL, parse, at-home, data-saver) e estante JSON
+3. Casos de uso Go: estante, ficha, leitura, favorito, progresso
+4. Inertia no processo Go (HTML na primeira visita, JSON com `X-Inertia`)
+5. Interface nas mesmas camadas: domínio, casos de uso, adaptador Inertia, viewmodels e páginas Tailwind
+6. Janela Wails; em dev a webview aponta para o servidor Go
 
-1. Scaffold SDD + BMad + memória + skill Cursor
-2. JSON + HTTP (curl) + cliente MangaDex testável
-3. Persistência da estante e do progresso
-4. Layout LÖVE (washi / vermelhão / dobras de orihon)
-5. Telas: estante, ficha, spread
-6. Testes Lua + smoke HTTP
-7. Chrome: barra de rolagem; rodapé só em ficha/leitura; print em `docs/images/estante.jpg`
+Stack em uso: Go, Wails v2, Vue 3, TypeScript, Inertia, Vite, Tailwind CSS, Pinia, Zod, VueUse, Vitest, ESLint, Prettier, MangaDex API v5.
 
-Stack: Lua 5.4 (testes), LÖVE 11 (UI), `curl` para HTTPS, MangaDex API v5.
+Fora da interface: Vue Router (o Inertia roteia), Axios/ofetch/TanStack Query (o Go faz o HTTP), PrimeVue (o chrome é próprio), Playwright (o contrato fica em `go test . ./internal/...` e `npm test`).
