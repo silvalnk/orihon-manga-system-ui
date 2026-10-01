@@ -36,7 +36,7 @@ O arquivo é em **português**. As **mensagens de commit** permanecem em **ingl�
 ✨ feat: open manga chapters as RTL orihon spreads
 📝 docs: add beginner glossary for MangaDex and folds
 🤖 chore: add orihon-reader Cursor skill
-🙈 chore: ignore LÖVE cache and packaged .love files
+🙈 chore: ignore frontend build output and node_modules
 ```
 
 ## Nunca
